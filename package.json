@@ -1,0 +1,56 @@
+{
+  "name": "pqattest",
+  "version": "0.1.0",
+  "description": "Post-quantum-signed, hash-chained provenance for AI agent actions. Quantum-resistant attestation for anything an autonomous agent does.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Ahmed Hassan (A2Z SOC)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AAH20/pqattest.git"
+  },
+  "keywords": [
+    "post-quantum",
+    "ml-dsa",
+    "dilithium",
+    "fips-204",
+    "provenance",
+    "attestation",
+    "ai-agents",
+    "mcp",
+    "supply-chain-security",
+    "in-toto",
+    "sigstore"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "bin": {
+    "pqattest": "./dist/src/cli.js"
+  },
+  "files": [
+    "dist/src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/**/*.test.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@noble/post-quantum": "^0.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.4.0"
+  }
+}
