@@ -15,7 +15,17 @@
  * evidence, and incident forensics don't get to assume the verifier runs
  * "soon after" the signature was made.
  */
+import { webcrypto } from 'node:crypto';
 import { ml_dsa65 } from '@noble/post-quantum/ml-dsa.js';
+
+// @noble/post-quantum needs the Web Crypto API's globalThis.crypto for
+// secure randomness. Node exposes it unflagged from v20+; on v18 (still in
+// this package's supported range) it's only reachable via node:crypto's
+// `webcrypto` export. Polyfill from Node's own implementation rather than a
+// third-party one, and only if it's genuinely missing.
+if (typeof globalThis.crypto === 'undefined') {
+  Object.defineProperty(globalThis, 'crypto', { value: webcrypto, configurable: true });
+}
 
 export const ALGORITHM = 'ml-dsa-65' as const;
 
