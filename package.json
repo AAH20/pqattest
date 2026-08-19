@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test dist/tests/**/*.test.js",
+    "test": "npm run build && node --test dist/tests/crypto.test.js dist/tests/ledger.test.js dist/tests/store.test.js dist/tests/wrap.test.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
